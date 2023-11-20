@@ -50,6 +50,25 @@ function checkOutcome(){
         ['A3', 'B2', 'C1']
     ];
 
+    for (const combination of winCombinations){
+        const [btn1, btn2, btn3] = combination;
+        const element1 = document.getElementById(btn1);
+        const element2 = document.getElementById(btn2);
+        const element3 = document.getElementById(btn3);
+
+        if (
+            element1.innerHTML !== "" &&
+            element1.innerHTML === element2.innerHTML &&
+            element1.innerHTML === element3.innerHTML
+        ) {
+            document.getElementById("turn").remove()
+            const winnerColor = element1.style.color;
+            const text = document.getElementById("winner");
+            text.innerHTML = winnerColor + " wins";
+            return;
+        }
+    }
+    
     let isTie = true;
 
     const buttons = document.querySelectorAll('button');
@@ -68,23 +87,6 @@ function checkOutcome(){
         return; // Exit the function, no need to check for a winner
     }
 
-    for (const combination of winCombinations){
-        const [btn1, btn2, btn3] = combination;
-        const element1 = document.getElementById(btn1);
-        const element2 = document.getElementById(btn2);
-        const element3 = document.getElementById(btn3);
-
-        if (
-            element1.innerHTML !== "" &&
-            element1.innerHTML === element2.innerHTML &&
-            element1.innerHTML === element3.innerHTML
-        ) {
-            document.getElementById("turn").remove()
-            const winnerColor = element1.style.color;
-            const text = document.getElementById("winner");
-            text.innerHTML = winnerColor + " wins";
-        }
-    }
 }
 
 function turn(){
